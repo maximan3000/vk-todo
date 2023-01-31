@@ -43,9 +43,10 @@ export const App: FC = () => {
 
   const removeList = useCallback(
     (listName: string) => {
+      debugger;
       const updatedLists = JSON.parse(JSON.stringify(lists)) as TList[];
       const listIndex = updatedLists.findIndex(({ name }) => name === listName);
-      if (listIndex) updatedLists.splice(listIndex, 1);
+      if (listIndex !== -1) updatedLists.splice(listIndex, 1);
       updateLists(updatedLists);
     },
     [lists]
@@ -65,10 +66,9 @@ export const App: FC = () => {
     (reminderName: string, listName: string) => {
       const updatedLists = JSON.parse(JSON.stringify(lists)) as TList[];
       const list = updatedLists.find(({ name }) => name === listName);
-      const reminderIndex = list?.reminders.findIndex(
-        ({ name }) => name === reminderName
-      );
-      if (reminderIndex) list?.reminders.splice(reminderIndex, 1);
+      const reminderIndex =
+        list?.reminders.findIndex(({ name }) => name === reminderName) || -1;
+      if (reminderIndex !== -1) list?.reminders.splice(reminderIndex, 1);
       updateLists(updatedLists);
     },
     [lists]

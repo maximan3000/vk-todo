@@ -15,7 +15,7 @@ export const ListCreator: FC<IListCreator> = memo(({ addList }) => {
 
   return (
     <FormLayout onSubmit={onSubmit}>
-      <FormItem top="Название списка" bottom={name}>
+      <FormItem top="Название списка">
         <Input
           type="text"
           name="name"
