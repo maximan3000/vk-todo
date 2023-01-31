@@ -1,11 +1,20 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { Button, FormItem, FormLayout, Input } from '@vkontakte/vkui';
+import { TList } from '../../shared/types';
 
-export const ListCreator: FC = () => {
+interface IListCreator {
+  addList: (list: TList) => void;
+}
+
+export const ListCreator: FC<IListCreator> = memo(({ addList }) => {
   const [name, setName] = useState<string>('');
 
+  const onSubmit = () => {
+    addList({ name: name, reminders: [] });
+  };
+
   return (
-    <FormLayout onSubmit={() => alert()}>
+    <FormLayout onSubmit={onSubmit}>
       <FormItem top="Название списка" bottom={name}>
         <Input
           type="text"
@@ -21,4 +30,4 @@ export const ListCreator: FC = () => {
       </FormItem>
     </FormLayout>
   );
-};
+});
