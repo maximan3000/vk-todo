@@ -1,0 +1,67 @@
+{
+  "name": "vk-todo",
+  "version": "0.1.1",
+  "private": true,
+  "engines": {
+    "node": ">=16.19.0",
+    "npm": ">=8.19.3"
+  },
+  "homepage": "./",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.11",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vkontakte/icons": "^2.10.0",
+    "@vkontakte/vk-bridge": "^2.7.2",
+    "@vkontakte/vkui": "^5.1.0",
+    "eruda": "^2.4.1",
+    "eruda-code": "^2.0.0",
+    "eruda-dom": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "vk-miniapps-deploy"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@vkontakte/vk-miniapps-deploy": "^0.0.26",
+    "eslint-config-prettier": "^8.6.0",
+    "prettier": "^2.8.3"
+  }
+}
