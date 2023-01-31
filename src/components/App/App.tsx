@@ -30,7 +30,7 @@ export const App: FC = () => {
   );
 
   useEffect(() => {
-    fetchValue<TList[]>(LISTS_KEY).then((lists) => setLists(lists));
+    fetchValue<TList[]>(LISTS_KEY).then((lists) => setLists(lists || []));
   }, []);
 
   const addList = useCallback(

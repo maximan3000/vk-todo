@@ -6,6 +6,7 @@
     "node": ">=16.19.0",
     "npm": ">=8.19.3"
   },
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
