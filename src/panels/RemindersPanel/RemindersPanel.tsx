@@ -10,12 +10,12 @@ import {
   ContentCard,
 } from '@vkontakte/vkui';
 
-import { removeReminder } from '../../store/slices/listsSlice';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { selectLocation, selectLists } from '../../store/selectors';
-import { navigate } from '../../store/slices/locationSlice';
-import { paths, structure } from '../../shared/navigation';
-import { setActiveModal } from '../../store/slices/activeModalSlice';
+import { removeReminder } from 'store/slices/listsSlice';
+import { useAppDispatch, useAppSelector } from 'store';
+import { selectLocation, selectLists } from 'store/selectors';
+import { navigate } from 'store/slices/locationSlice';
+import { paths, structure } from 'shared/navigation';
+import { setActiveModal } from 'store/slices/activeModalSlice';
 
 interface IRemindersPanel {
   id: string;

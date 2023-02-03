@@ -1,7 +1,9 @@
-import { TNavigation } from '../shared/types';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { TList } from '../shared/types';
+
+import { TNavigation } from 'shared/types';
+import { TList } from 'shared/types';
+
 import listsReducer from './slices/listsSlice';
 import locationReducer from './slices/locationSlice';
 import activeModalSlice from './slices/activeModalSlice';

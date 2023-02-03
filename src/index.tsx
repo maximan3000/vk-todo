@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './components/App';
-import bridge from '@vkontakte/vk-bridge';
-
+import { Provider } from 'react-redux';
 import '@vkontakte/vkui/dist/components.css';
 import '@vkontakte/vkui/dist/vkui.css';
 import { AdaptivityProvider, ConfigProvider } from '@vkontakte/vkui';
-import { Provider } from 'react-redux';
-import store from './store';
+import bridge from '@vkontakte/vk-bridge';
+
+import App from 'components/App';
+import store from 'store';
+
+import './index.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

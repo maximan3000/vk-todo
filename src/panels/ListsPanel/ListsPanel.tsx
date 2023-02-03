@@ -9,12 +9,12 @@ import {
   CellButton,
 } from '@vkontakte/vkui';
 
-import { selectLists } from '../../store/selectors';
-import { removeList } from '../../store/slices/listsSlice';
-import { navigate } from '../../store/slices/locationSlice';
-import { setActiveModal } from '../../store/slices/activeModalSlice';
-import store, { useAppDispatch, useAppSelector } from '../../store';
-import { paths, structure } from '../../shared/navigation';
+import { selectLists } from 'store/selectors';
+import { removeList } from 'store/slices/listsSlice';
+import { navigate } from 'store/slices/locationSlice';
+import { setActiveModal } from 'store/slices/activeModalSlice';
+import { useAppDispatch, useAppSelector } from 'store';
+import { paths, structure } from 'shared/navigation';
 
 interface IListsPanel {
   id: string;

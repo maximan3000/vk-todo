@@ -1,10 +1,10 @@
-import { structure } from '../../shared/navigation';
-
 import {
   createSlice,
   PayloadAction,
   SliceCaseReducers,
 } from '@reduxjs/toolkit';
+
+import { structure } from 'shared/navigation';
 
 export const activeModalSlice = createSlice<
   string | null,

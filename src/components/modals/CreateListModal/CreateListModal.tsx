@@ -7,9 +7,9 @@ import {
   ModalPage,
 } from '@vkontakte/vkui';
 
-import { addList } from '../../../store/slices/listsSlice';
-import { useAppDispatch } from '../../../store';
-import { setActiveModal } from '../../../store/slices/activeModalSlice';
+import { addList } from 'store/slices/listsSlice';
+import { useAppDispatch } from 'store';
+import { setActiveModal } from 'store/slices/activeModalSlice';
 
 interface ICreateListModal {
   id: string;

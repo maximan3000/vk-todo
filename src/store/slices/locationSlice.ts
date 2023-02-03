@@ -1,10 +1,11 @@
-import { TNavigation } from './../../shared/types';
-import { ROOT_PATH, parsePath } from './../../shared/navigation';
 import {
   createSlice,
   PayloadAction,
   SliceCaseReducers,
 } from '@reduxjs/toolkit';
+
+import { TNavigation } from 'shared/types';
+import { ROOT_PATH, parsePath } from 'shared/navigation';
 
 export const locationSlice = createSlice<
   TNavigation,

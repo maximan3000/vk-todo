@@ -8,10 +8,10 @@ import {
   ModalPage,
 } from '@vkontakte/vkui';
 
-import { addReminder } from '../../../store/slices/listsSlice';
-import { useAppSelector, useAppDispatch } from '../../../store';
-import { selectLists, selectLocation } from '../../../store/selectors';
-import { setActiveModal } from '../../../store/slices/activeModalSlice';
+import { addReminder } from 'store/slices/listsSlice';
+import { useAppSelector, useAppDispatch } from 'store';
+import { selectLists, selectLocation } from 'store/selectors';
+import { setActiveModal } from 'store/slices/activeModalSlice';
 
 interface ICreateReminderModal {
   id: string;

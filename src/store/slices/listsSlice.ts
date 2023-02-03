@@ -6,7 +6,7 @@ import {
 
 import { TList, TLists, TReminder } from 'shared/types';
 import { fetchValue, putValue, LISTS_KEY } from 'shared/api';
-import { IStore } from '..';
+import { IStore } from 'store';
 import { assertLists } from 'store/asserts';
 
 export const listsSlice = createSlice<TLists, SliceCaseReducers<TLists>>({
