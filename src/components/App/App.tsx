@@ -1,116 +1,58 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ModalPage, ModalRoot, SplitLayout } from '@vkontakte/vkui';
-
-import Lists from '../../pages/Lists';
-import Reminders from '../../pages/Reminders';
-import { TList, TReminder } from '../../shared/types';
-
-import ListCreator from '../ListCreator';
-import { paths } from '../../shared/paths';
+import React, { FC, useEffect } from 'react';
 import {
-  CREATE_LIST_MODAL,
-  CREATE_REMINDER_MODAL,
-  LISTS_KEY,
-} from '../../shared/consts';
-import { fetchValue, putValue } from '../../shared/api';
-import ReminderCreator from '../ReminderCreator';
+  AppRoot,
+  ModalRoot,
+  Root,
+  SplitCol,
+  SplitLayout,
+  View,
+} from '@vkontakte/vkui';
+
+import ListsPanel from '../../panels/ListsPanel';
+import RemindersPanel from '../../panels/RemindersPanel';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { fetchLists } from '../../store/slices/listsSlice';
+import { structure } from '../../shared/navigation';
+import { selectLocation, selectActiveModal } from '../../store/selectors';
+import CreateReminderModal from '../modals/CreateReminderModal';
+import CreateListModal from '../modals/CreateListModal';
+import { setActiveModal } from '../../store/slices/activeModalSlice';
 
 export const App: FC = () => {
-  const [activeModal, setActiveModal] = useState<string | null>(null);
-  const [lists, setLists] = useState<TList[]>([]);
-
-  const updateLists = useCallback(
-    (updatedLists: TList[]) => {
-      putValue<TList[]>(LISTS_KEY, updatedLists).then(() =>
-        setLists(updatedLists)
-      );
-    },
-    [setLists]
-  );
+  const dispatch = useAppDispatch();
+  const location = useAppSelector(selectLocation);
+  const activeModal = useAppSelector(selectActiveModal);
 
   useEffect(() => {
-    fetchValue<TList[]>(LISTS_KEY).then((lists) => setLists(lists || []));
+    dispatch(fetchLists());
   }, []);
 
-  const addList = useCallback(
-    (list: TList) => {
-      const updatedLists = lists.concat(list);
-      updateLists(updatedLists);
-    },
-    [lists]
-  );
-
-  const removeList = useCallback(
-    (listName: string) => {
-      debugger;
-      const updatedLists = JSON.parse(JSON.stringify(lists)) as TList[];
-      const listIndex = updatedLists.findIndex(({ name }) => name === listName);
-      if (listIndex !== -1) updatedLists.splice(listIndex, 1);
-      updateLists(updatedLists);
-    },
-    [lists]
-  );
-
-  const addReminder = useCallback(
-    (reminder: TReminder, listName: string) => {
-      const updatedLists = JSON.parse(JSON.stringify(lists)) as TList[];
-      const list = updatedLists.find(({ name }) => name === listName);
-      list?.reminders.push(reminder);
-      updateLists(updatedLists);
-    },
-    [lists]
-  );
-
-  const removeReminder = useCallback(
-    (reminderName: string, listName: string) => {
-      const updatedLists = JSON.parse(JSON.stringify(lists)) as TList[];
-      const list = updatedLists.find(({ name }) => name === listName);
-      const reminderIndex =
-        list?.reminders.findIndex(({ name }) => name === reminderName) || -1;
-      if (reminderIndex !== -1) list?.reminders.splice(reminderIndex, 1);
-      updateLists(updatedLists);
-    },
-    [lists]
-  );
-
-  const modal = (
-    <ModalRoot activeModal={activeModal} onClose={() => setActiveModal(null)}>
-      <ModalPage id={CREATE_LIST_MODAL}>
-        <ListCreator addList={addList} />
-      </ModalPage>
-      <ModalPage id={CREATE_REMINDER_MODAL}>
-        <ReminderCreator addReminder={addReminder} lists={lists} />
-      </ModalPage>
-    </ModalRoot>
-  );
-
   return (
-    <SplitLayout modal={modal}>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            element={
-              <Lists
-                setActiveModal={setActiveModal}
-                lists={lists}
-                removeList={removeList}
+    <AppRoot>
+      <SplitLayout
+        modal={
+          <ModalRoot
+            activeModal={activeModal}
+            onClose={() => dispatch(setActiveModal(null))}
+          >
+            <CreateListModal id={structure.modals.CREATE_LIST_MODAL.id} />
+            <CreateReminderModal
+              id={structure.modals.CREATE_REMINDER_MODAL.id}
+            />
+          </ModalRoot>
+        }
+      >
+        <SplitCol width={'100%'} maxWidth={'100%'} animate>
+          <Root activeView={location.view}>
+            <View activePanel={location.panel} id={structure.ROOT_VIEW.id}>
+              <ListsPanel id={structure.ROOT_VIEW.panels.LISTS_PANEL.id} />
+              <RemindersPanel
+                id={structure.ROOT_VIEW.panels.REMINDERS_PANEL.id}
               />
-            }
-            path={paths.root()}
-          />
-          <Route
-            element={
-              <Reminders
-                setActiveModal={setActiveModal}
-                lists={lists}
-                removeReminder={removeReminder}
-              />
-            }
-            path={paths.list()}
-          />
-        </Routes>
-      </BrowserRouter>
-    </SplitLayout>
+            </View>
+          </Root>
+        </SplitCol>
+      </SplitLayout>
+    </AppRoot>
   );
 };

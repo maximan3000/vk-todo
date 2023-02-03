@@ -1,6 +1,6 @@
 {
   "name": "vk-todo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "engines": {
     "node": ">=16.19.0",
@@ -8,6 +8,7 @@
   },
   "homepage": "./",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -18,8 +19,12 @@
     "@vkontakte/icons": "^2.10.0",
     "@vkontakte/vk-bridge": "^2.7.2",
     "@vkontakte/vkui": "^5.1.0",
+    "eruda": "^2.4.1",
+    "eruda-code": "^2.0.0",
+    "eruda-dom": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.4"
