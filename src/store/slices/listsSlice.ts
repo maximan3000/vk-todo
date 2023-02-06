@@ -4,7 +4,7 @@ import {
   createAsyncThunk,
 } from '@reduxjs/toolkit';
 
-import { TList, TLists, TReminder } from 'shared/types';
+import { TList, TReminder } from 'shared/types';
 import { fetchValue, putValue, LISTS_KEY } from 'shared/api';
 import { IStore } from 'store';
 import { assertLists } from 'store/asserts';
@@ -16,8 +16,8 @@ export const fetchLists = createAsyncThunk(
 
 const getLists = (getState: () => unknown) => (getState() as IStore).lists;
 
-const saveLists = async (lists: TLists): Promise<boolean> =>
-  putValue<TLists>(LISTS_KEY, lists);
+const saveLists = async (lists: TList[]): Promise<boolean> =>
+  putValue<TList[]>(LISTS_KEY, lists);
 
 export const addList = createAsyncThunk(
   'lists/addList',
@@ -66,7 +66,7 @@ export const removeReminder = createAsyncThunk(
   }
 );
 
-export const listsSlice = createSlice<TLists, SliceCaseReducers<TLists>>({
+export const listsSlice = createSlice<TList[], SliceCaseReducers<TList[]>>({
   name: 'lists',
   initialState: [],
   extraReducers(builder) {

@@ -9,8 +9,6 @@ export type TList = {
   reminders: TReminder[];
 };
 
-export type TLists = TList[];
-
 export type TNavigation = {
   view: string;
   panel: string;

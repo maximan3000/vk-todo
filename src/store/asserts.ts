@@ -1,9 +1,9 @@
-import { TList, TLists, TReminder } from 'shared/types';
+import { TList, TReminder } from 'shared/types';
 
 export type UnknownObject = Record<string, unknown>;
 
 export const assertObject = (value: unknown): value is UnknownObject => {
-  return typeof value !== 'object' || value === null;
+  return typeof value === 'object';
 };
 
 export const assertReminder = (value: unknown): value is TReminder => {
@@ -54,7 +54,7 @@ export const assertList = (value: unknown): value is TList => {
   return true;
 };
 
-export const assertLists = (value: unknown): value is TLists => {
+export const assertLists = (value: unknown): value is TList[] => {
   if (!Array.isArray(value)) {
     return false;
   }
