@@ -16,7 +16,7 @@ export const Controls: FC<IControls> = memo(({ hideAddListBtn }) => {
 
   return (
     <ButtonGroup mode="horizontal" stretched className={styles.Controls}>
-      {hideAddListBtn && (
+      {!hideAddListBtn && (
         <CellButton
           centered
           onClick={() =>
