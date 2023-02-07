@@ -1,0 +1,12 @@
+.Controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ControlsBtnRight {
+  grid-column: 2 / 3;
+}
+
+.ControlsBtnLeft {
+  grid-column: 1 / 2;
+}

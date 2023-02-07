@@ -29,4 +29,4 @@ root.render(
 
 bridge.send('VKWebAppInit');
 
-//import('./eruda.js').then(({ default: eruda }) => {}); //runtime download
+//import('./eruda.js').then(({ default: eruda }) => {});

@@ -14,8 +14,8 @@ import { useAppDispatch, useAppSelector } from 'store';
 import { fetchLists } from 'store/slices/listsSlice';
 import { structure } from 'shared/navigation';
 import { selectLocation, selectActiveModal } from 'store/selectors';
-import CreateReminderModal from 'components/modals/CreateReminderModal';
-import CreateListModal from 'components/modals/CreateListModal';
+import CreateReminderModal from 'modals/CreateReminderModal';
+import CreateListModal from 'modals/CreateListModal';
 import { setActiveModal } from 'store/slices/activeModalSlice';
 
 export const App: FC = () => {
@@ -25,7 +25,7 @@ export const App: FC = () => {
 
   useEffect(() => {
     dispatch(fetchLists());
-  }, []);
+  }, [dispatch]);
 
   return (
     <AppRoot>

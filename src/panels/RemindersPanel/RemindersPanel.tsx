@@ -1,21 +1,13 @@
-import React, { FC, memo } from 'react';
-import {
-  Group,
-  Cell,
-  Panel,
-  PanelHeader,
-  ButtonGroup,
-  CellButton,
-  PanelHeaderBack,
-  ContentCard,
-} from '@vkontakte/vkui';
+import { FC, memo } from 'react';
+import { Group, Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
 
-import { removeReminder } from 'store/slices/listsSlice';
 import { useAppDispatch, useAppSelector } from 'store';
 import { selectLocation, selectLists } from 'store/selectors';
 import { navigate } from 'store/slices/locationSlice';
-import { paths, structure } from 'shared/navigation';
-import { setActiveModal } from 'store/slices/activeModalSlice';
+import { paths } from 'shared/navigation';
+
+import Controls from 'components/Controls';
+import ReminderCell from 'components/ReminderCell';
 
 interface IRemindersPanel {
   id: string;
@@ -41,33 +33,14 @@ export const RemindersPanel: FC<IRemindersPanel> = memo(({ id }) => {
       </PanelHeader>
       <Group>
         {list?.reminders.map((reminder) => (
-          <Cell
-            key={reminder.name}
-            mode="removable"
-            onRemove={() => dispatch(removeReminder(reminder))}
-          >
-            <ContentCard
-              header={reminder.name}
-              caption={reminder.description}
-            />
-          </Cell>
+          <ReminderCell reminder={reminder} />
         ))}
       </Group>
       <Group>
-        <ButtonGroup mode="horizontal" stretched>
-          <CellButton centered hidden disabled></CellButton>
-          <CellButton
-            centered
-            onClick={() =>
-              dispatch(
-                setActiveModal(structure.modals.CREATE_REMINDER_MODAL.id)
-              )
-            }
-          >
-            Добавить напоминание
-          </CellButton>
-        </ButtonGroup>
+        <Controls hideAddListBtn />
       </Group>
     </Panel>
   );
 });
+
+RemindersPanel.displayName = 'RemindersPanel';
